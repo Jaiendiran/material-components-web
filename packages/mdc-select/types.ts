@@ -21,30 +21,31 @@
  * THE SOFTWARE.
  */
 
-import {MDCList} from '@material/list/index';
-import {MDCMenuSurface} from '@material/menu-surface/index';
+import {MDCFloatingLabel} from '@material/floating-label/index';
+import {MDCLineRipple} from '@material/line-ripple/index';
+import {MDCMenu} from '@material/menu/index';
+import {MDCNotchedOutline} from '@material/notched-outline/index';
+import {MDCSelectHelperTextFoundation} from './helper-text/index';
+import {MDCSelectIconFoundation} from './icon/index';
 
-export interface MenuItemEvent extends Event {
-  detail: MenuItemEventDetail;
+export interface FoundationMapType {
+  leadingIcon: MDCSelectIconFoundation;
+  helperText: MDCSelectHelperTextFoundation;
 }
 
-export interface DefaultMenuItemEvent extends Event {
-  detail: DefaultMenuItemEventDetail;
+export interface SelectEvent extends Event {
+  detail: SelectEventDetail;
 }
 
-/**
- * Event properties used by the adapter and foundation.
- */
-export interface MenuItemEventDetail {
+export interface SelectEventDetail {
+  value: string;
   index: number;
 }
 
-/**
- * Event properties specific to the default component implementation.
- */
-export interface DefaultMenuItemEventDetail extends MenuItemEventDetail {
-  item: Element;
-}
-
-export type MenuSurfaceFactory = (el: Element) => MDCMenuSurface;
-export type ListFactory = (el: Element) => MDCList;
+// TODO(acdvorak): Every component should export its own factory and event types.
+export type LineRippleFactory = (el: Element) => MDCLineRipple;
+export type HelperTextFactory = (el: Element) => MDCTextFieldHelperText;
+export type MenuFactory = (el: Element) => MDCMenu;
+export type IconFactory = (el: Element) => MDCTextFieldIcon;
+export type LabelFactory = (el: Element) => MDCFloatingLabel;
+export type OutlineFactory = (el: Element) => MDCNotchedOutline;

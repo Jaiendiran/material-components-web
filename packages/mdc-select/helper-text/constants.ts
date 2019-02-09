@@ -21,13 +21,11 @@
  * THE SOFTWARE.
  */
 
-/** @enum {string} */
 const strings = {
   ARIA_HIDDEN: 'aria-hidden',
   ROLE: 'role',
 };
 
-/** @enum {string} */
 const cssClasses = {
   HELPER_TEXT_PERSISTENT: 'mdc-select-helper-text--persistent',
   HELPER_TEXT_VALIDATION_MSG: 'mdc-select-helper-text--validation-msg',
