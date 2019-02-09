@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2017 Google Inc.
+ * Copyright 2019 Google Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,47 +22,26 @@
  */
 
 import {MDCComponent} from '@material/base/component';
+import {MDCTextFieldCharacterCounterFoundation} from './foundation';
 
-import MDCTextFieldIconAdapter from './adapter';
-import MDCTextFieldIconFoundation from './foundation';
-
-/**
- * @extends {MDCComponent<!MDCTextFieldIconFoundation>}
- * @final
- */
-class MDCTextFieldIcon extends MDCComponent {
-  /**
-   * @param {!Element} root
-   * @return {!MDCTextFieldIcon}
-   */
-  static attachTo(root) {
-    return new MDCTextFieldIcon(root);
+class MDCTextFieldCharacterCounter extends MDCComponent<MDCTextFieldCharacterCounterFoundation> {
+  static attachTo(root: Element): MDCTextFieldCharacterCounter {
+    return new MDCTextFieldCharacterCounter(root);
   }
 
-  /**
-   * @return {!MDCTextFieldIconFoundation}
-   */
-  get foundation() {
+  get foundation(): MDCTextFieldCharacterCounterFoundation {
     return this.foundation_;
   }
 
-  /**
-   * @return {!MDCTextFieldIconFoundation}
-   */
-  getDefaultFoundation() {
-    return new MDCTextFieldIconFoundation(/** @type {!MDCTextFieldIconAdapter} */ (Object.assign({
-      getAttr: (attr) => this.root_.getAttribute(attr),
-      setAttr: (attr, value) => this.root_.setAttribute(attr, value),
-      removeAttr: (attr) => this.root_.removeAttribute(attr),
+  getDefaultFoundation(): MDCTextFieldCharacterCounterFoundation {
+    return new MDCTextFieldCharacterCounterFoundation({
       setContent: (content) => {
         this.root_.textContent = content;
       },
-      registerInteractionHandler: (evtType, handler) => this.root_.addEventListener(evtType, handler),
-      deregisterInteractionHandler: (evtType, handler) => this.root_.removeEventListener(evtType, handler),
-      notifyIconAction: () => this.emit(
-        MDCTextFieldIconFoundation.strings.ICON_EVENT, {} /* evtData */, true /* shouldBubble */),
-    })));
+    });
   }
 }
 
-export {MDCTextFieldIcon, MDCTextFieldIconFoundation};
+export {MDCTextFieldCharacterCounter as default, MDCTextFieldCharacterCounter};
+export * from './adapter';
+export * from './foundation';
