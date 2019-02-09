@@ -25,13 +25,20 @@ import {assert} from 'chai';
 import bel from 'bel';
 import td from 'testdouble';
 
-import MDCDismissibleDrawerFoundation from '../../../packages/mdc-drawer/dismissible/foundation';
+import {MDCDismissibleDrawerFoundation} from '../../../packages/mdc-drawer/dismissible/foundation';
+import {MDCModalDrawerFoundation} from '../../../packages/mdc-drawer/modal/foundation';
 import {strings, cssClasses} from '../../../packages/mdc-drawer/constants';
 import {verifyDefaultAdapter} from '../helpers/foundation';
 import {install as installClock} from '../helpers/clock';
 
 suite('MDCDismissibleDrawerFoundation');
 
+/**
+ * @return {{
+ *   mockAdapter: MDCDrawerAdapter,
+ *   foundation: MDCDismissibleDrawerFoundation,
+ * }}
+ */
 const setupTest = () => {
   const mockAdapter = td.object(MDCDismissibleDrawerFoundation.defaultAdapter);
   const foundation = new MDCDismissibleDrawerFoundation(mockAdapter);
@@ -179,8 +186,7 @@ test(`#isClosing returns true when it has ${cssClasses.CLOSING} class`, () => {
 });
 
 test(`#isClosing returns false when it lacks ${cssClasses.CLOSING} class`, () => {
-  const {foundation, mockAdapter} = setupTest();
-  td.when(mockAdapter.hasClass(cssClasses.CLOSING)).thenReturn(false);
+  const foundation = new MDCModalDrawerFoundation();
   assert.isFalse(foundation.isClosing());
 });
 
