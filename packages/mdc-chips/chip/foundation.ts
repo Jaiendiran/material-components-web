@@ -68,7 +68,7 @@ class MDCChipFoundation extends MDCFoundation<MDCChipAdapter> {
    */
   private shouldRemoveOnTrailingIconClick_ = true;
 
-  constructor(adapter: Partial<MDCChipAdapter> = {}) {
+  constructor(adapter?: Partial<MDCChipAdapter>) {
     super({...MDCChipFoundation.defaultAdapter, ...adapter});
   }
 
@@ -172,7 +172,6 @@ class MDCChipFoundation extends MDCFoundation<MDCChipAdapter> {
   /**
    * Handles an interaction event on the trailing icon element. This is used to
    * prevent the ripple from activating on interaction with the trailing icon.
-   * @param {!Event} evt
    */
   handleTrailingIconInteraction(evt: MouseEvent | KeyboardEvent) {
     const isEnter = (evt as KeyboardEvent).key === 'Enter' || (evt as KeyboardEvent).keyCode === 13;
